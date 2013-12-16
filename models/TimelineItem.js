@@ -1,49 +1,45 @@
-{
+var timelineItemSchema = {
   "kind": "mirror#timelineItem",
-  "id": string,
-  "sourceItemId": string,
-  "canonicalUrl": string,
-  "bundleId": string,
-  "isBundleCover": boolean,
-  "selfLink": string,
-  "created": datetime,
-  "updated": datetime,
-  "displayTime": datetime,
-  "isPinned": boolean,
+  "id": { type: String, required: true },
+  "sourceItemId": { type: String },
+  "canonicalUrl": { type: String },
+  "bundleId": { type: String },
+  "isBundleCover": { type: Boolean },
+  "selfLink": { type: String },
+  "created": { type: Date },
+  "updated": { type: Date },
+  "displayTime": { type: Date },
+  "isPinned": { type: Boolean },
   "pinScore": integer,
-  "isDeleted": boolean,
+  "isDeleted": { type: Boolean },
   "etag": etag,
-  "creator": contacts Resource,
-  "recipients": [
-    contacts Resource
-  ],
-  "inReplyTo": string,
-  "title": string,
-  "text": string,
-  "html": string,
-  "speakableType": string,
-  "speakableText": string,
-  "attachments": [
-    timeline.attachments Resource
-  ],
-  "location": locations Resource,
+  "creator": { type: Contact },
+  "recipients": [ Contact ],
+  "inReplyTo": { type: String },
+  "title": { type: String },
+  "text": { type: String },
+  "html": { type: String },
+  "speakableType": { type: String },
+  "speakableText": { type: String },
+  "attachments": [ Attachment ],
+  "location": [ Location ],
   "menuItems": [
     {
-      "id": string,
-      "action": string,
+      "id": { type: String },
+      "action": { type: String },
       "values": [
         {
-          "state": string,
-          "displayName": string,
-          "iconUrl": string
+          "state": { type: String },
+          "displayName": { type: String },
+          "iconUrl": { type: String }
         }
       ],
-      "removeWhenSelected": boolean,
-      "payload": string
+      "removeWhenSelected": { type: Boolean },
+      "payload": { type: String }
     }
   ],
   "notification": {
-    "level": string,
-    "deliveryTime": datetime
+    "level": { type: String },
+    "deliveryTime": { type: Date }
   }
-}
+};
