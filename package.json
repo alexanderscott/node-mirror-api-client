@@ -1,5 +1,5 @@
 {
-  "name": "mirror-api-client',
+  "name": "mirror-api-client",
   "version": "0.0.1",
   "keywords": "glass,google glass,mirror,mirror api",
   "description": "Google Mirror API client for managing Glass timeline items, contacts, and subscriptions.",
