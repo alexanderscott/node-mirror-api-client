@@ -2,7 +2,7 @@
 
 Google Mirror API client for managing Glass timeline items, contacts, and subscriptions.",
 
-[![Build Status](https://secure.travis-ci.org/alexanderscott/mirror-api-client.png)](http://travis-ci.org/alexanderscott/mirror-api-client)
+[![Build Status](https://secure.travis-ci.org/alexanderscott/node-mirror-api-client.png)](http://travis-ci.org/alexanderscott/node-mirror-api-client)
 
 ## Installation
 Install via npm:
