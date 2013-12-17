@@ -1,4 +1,4 @@
-var contactSchema = {
+var contactSchema = module.exports = {
   "kind": "mirror#contact",
   "source": { type: String },
   "id": { type: String },
@@ -10,4 +10,5 @@ var contactSchema = {
   "priority": unsigned integer,
   "acceptCommands": [ { "type": { type: String } } ],
   "speakableName": { type: String },
-  "sharingFeatures": [ { type: String } ] };
+  "sharingFeatures": [ { type: String } ] 
+};

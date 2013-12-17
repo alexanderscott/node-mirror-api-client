@@ -1,4 +1,6 @@
-var locationSchema = {
+"use strict";
+
+var locationSchema = module.exports = {
   "kind": { type: String },                         //"mirror#location",
   "id": { type: String, required: true },
   "timestamp": { type: Date }                       //datetime,

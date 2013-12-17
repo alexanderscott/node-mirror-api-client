@@ -1,4 +1,6 @@
-var timelineItemSchema = {
+"use strict";
+
+var timelineItemSchema = module.exports = {
   "kind": "mirror#timelineItem",
   "id": { type: String, required: true },
   "sourceItemId": { type: String },
