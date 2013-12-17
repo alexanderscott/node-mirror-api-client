@@ -1,7 +1,11 @@
 "use strict";
 
+var Contact = require('./Contact'),
+    Location = require('./Location'),
+    Attachment = require('./Attachment');
+
 var timelineItemSchema = module.exports = {
-  "kind": "mirror#timelineItem",
+  "kind": { type: String },                 //"mirror#timelineItem",
   "id": { type: String, required: true },
   "sourceItemId": { type: String },
   "canonicalUrl": { type: String },
@@ -12,9 +16,9 @@ var timelineItemSchema = module.exports = {
   "updated": { type: Date },
   "displayTime": { type: Date },
   "isPinned": { type: Boolean },
-  "pinScore": integer,
+  "pinScore": { type: Number },
   "isDeleted": { type: Boolean },
-  "etag": etag,
+  "etag": { type: String },         //etag,
   "creator": { type: Contact },
   "recipients": [ Contact ],
   "inReplyTo": { type: String },
@@ -45,3 +49,4 @@ var timelineItemSchema = module.exports = {
     "deliveryTime": { type: Date }
   }
 };
+

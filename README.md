@@ -42,7 +42,7 @@ Or clone the repo and link:
 
 ### Timeline Items
 
-#### getTimeline( {options}, callback(error, [items]) )
+#### listTimelineItems( {options}, callback(error, [items]) )
 #### getTimelineItem( 'itemId', callback(error, {item}) )
 #### insertTimelineItem( {}, callback(error, {item}) )
 #### patchTimelineItem( {}, callback(error, {item}) )
@@ -52,7 +52,7 @@ Or clone the repo and link:
 
 ### Contacts
 
-#### getContacts( [max number of contacts], callback(error, [contacts]) ) 
+#### listContacts( callback(error, [contacts]) ) 
 #### getContact( 'contactId', callback(error, {contact}) )
 #### insertContact( {contact}, callback(error, {contact}) )
 #### patchContact( {contact}, callback(error, {contact}) )
@@ -62,7 +62,7 @@ Or clone the repo and link:
 
 ### Subscriptions
     
-#### getSubscriptions( [max number of items], callback(error, [subscriptions] )
+#### listSubscriptions( callback(error, [subscriptions] )
 #### getSubscription( 'subscriptionId', callback(error, {subscription}) )
 #### updateSubscription( {subscription}, callback(error, {subscription}) )
 #### deleteSubscription( 'subscriptionId' or {subscription}, callback(error, {subscription}) )

@@ -1,3 +1,5 @@
+"use strict";
+
 var contactSchema = module.exports = {
   "kind": "mirror#contact",
   "source": { type: String },
@@ -7,8 +9,9 @@ var contactSchema = module.exports = {
   "type": { type: String },
   "acceptTypes": [ { type: String } ],
   "phoneNumber": { type: String },
-  "priority": unsigned integer,
+  "priority": { type: Number },
   "acceptCommands": [ { "type": { type: String } } ],
   "speakableName": { type: String },
   "sharingFeatures": [ { type: String } ] 
 };
+

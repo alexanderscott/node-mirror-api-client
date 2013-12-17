@@ -1,7 +1,7 @@
 "use strict";
 
 var assert = require('assert'),
-    MirrorClient = require('../lib/MirrorClient'),
+    MirrorClient = require('../lib/mirror-api-client'),
     _und = require('underscore');
 
 var mirrorClient;
@@ -13,7 +13,7 @@ describe('MirrorClient', function() {
                 clientId: config.googleApis.clientId,
                 clientSecret: config.googleApis.clientSecret,
                 redirectUri: config.googleApis.redirectUris[0],
-                scope: config.googleApis.scope.join(' ')
+                scope: config.googleApis.scope
             });
         } catch(err){
             return cb(err);
