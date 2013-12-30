@@ -1,6 +1,6 @@
 # mirror-client
 
-Google Mirror API client for managing Glass timeline items, contacts, and subscriptions.",
+Google Mirror API client for managing Glass timeline items, contacts, and subscriptions.
 
 
 ## Installation
