@@ -18,6 +18,9 @@
       "type": "MIT",
       "url": "https://github.com/alexanderscott/mirror-api-client/raw/master/LICENSE"
     }
-  ]
+  ],
+  "scripts": {
+      "test": "make test"
+  }
 
 }
