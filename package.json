@@ -1,8 +1,9 @@
 {
   "name": "mirror-api-client",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "keywords": "glass,google glass,mirror,mirror api",
   "description": "Google Mirror API client for managing Glass timeline items, contacts, and subscriptions.",
+  "private": false,
   "repository": {
     "url": "https://github.com/alexanderscott/mirror-api-client",
     "type": "git"
@@ -11,7 +12,7 @@
   "engines": {
     "node": ">= 0.8.0"
   },
-  "main": "index",
+  "main": "lib/mirror-api-client",
   "licenses": [
     {
       "type": "MIT",
