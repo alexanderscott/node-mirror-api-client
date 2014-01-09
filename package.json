@@ -20,7 +20,9 @@
     }
   ],
   "scripts": {
-      "test": "make test"
+    "test": "make test"
+  },
+  "dependencies": {
+    "googleapis": "~0.4.7"
   }
-
 }
