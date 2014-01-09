@@ -24,5 +24,9 @@
   },
   "dependencies": {
     "googleapis": "~0.4.7"
+  },
+  "devDependencies": {
+    "mocha": "~1.16.2",
+    "underscore": "~1.5.2"
   }
 }
