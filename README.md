@@ -16,19 +16,21 @@ Or clone the repo and link:
 
 ## Usage
     
-    var MirrorClient = require('mirror-client');
-
-    var mirrorClient = new MirrorClient({
+    var mirrorClient = require('mirror-client')({ 
         clientId: config.googleApis.clientId,
         clientSecret: config.googleApis.clientSecret,
         redirectUri: config.googleApis.redirectUris[0],
         scope: config.googleApis.scope
     });
 
-    mirrorClient.authorize().getTimeline(  function(err, timeline){
-        for(var i = 0; i < timeline.items.length; i++) { 
-            console.log(timeline.items[i].text);
-        }
+    mirrorClient.authorize(function(err){
+        if(err) { console.error(err); return; }
+
+        mirrorClient.getTimeline(  function(err, timeline){
+            for(var i = 0; i < timeline.items.length; i++) { 
+                console.log(timeline.items[i].text);
+            }
+        });
     });
 
 
