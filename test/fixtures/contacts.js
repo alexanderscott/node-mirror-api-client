@@ -2,7 +2,7 @@
 
 module.exports = [
     {
-        id: "harold",
+        id: parseInt(Math.random()*100000, 10).toString(),
         displayName: "Harold Penguin",
         iconUrl: "https://developers.google.com/glass/images/harold.jpg",
         priority: 7,

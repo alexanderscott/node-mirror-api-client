@@ -38,16 +38,24 @@ Or clone the repo and link:
 ## API Methods
 
 
+#### getAuthUrl()
+ * Returns a URL for the user to log in via browser.
+ * If log-in successful, will return a code in query param of redirectURL for client authorization
+
 #### authorize( [optional code], callback(error, response) ) 
+ * Authorizes the Mirror Client, creating auth_token from the code stored or retrieved above
+
+#### download( 'url', callback(error, data) )
+ * Downloads data from the specified URL, using an authorized connection.
 
 
 ### Timeline Items
 
-#### listTimelineItems( {options}, callback(error, [items]) )
+#### listTimelineItems( 'maxResults', callback(error, [items]) )
 #### getTimelineItem( 'itemId', callback(error, {item}) )
-#### insertTimelineItem( {}, callback(error, {item}) )
-#### patchTimelineItem( {}, callback(error, {item}) )
-#### updateTimelineItem( {}, callback(error, {item}) )
+#### insertTimelineItem( {item}, callback(error, {item}) )
+#### patchTimelineItem( {item}, callback(error, {item}) )
+#### updateTimelineItem( {item}, callback(error, {item}) )
 #### deleteTimelineItem( 'id' or {}, callback(error) )
 
 
@@ -69,29 +77,10 @@ Or clone the repo and link:
 #### deleteSubscription( 'subscriptionId' or {subscription}, callback(error, {subscription}) )
 
 
+### Locations
 
-
-## Streaming
-
-    var MirrorStreamClient = require('mirror-client').MirrorStreamClient;
-
-    var subscriptionStream = new mirrorClient.Stream();
-
-
-### Events
-
-#### 'error'
-
-    on('error', console.log)
-
-#### 'data'
-
-    on('data', console.log)
-
-#### 'close'
-    
-    on('close', console.log)
-
+#### listLocations( callback(error, [locations]) )
+#### getLocation( 'locationId', callback(error, {location}) )
 
 
 
@@ -101,18 +90,24 @@ To run the test suite, first invoke the following command within the repo, insta
 
     $ npm install
 
-Then run the tests:
+Then run the tests with:
 
     $ npm test
 
+The easiest way to pass app credentials into the tests is to create a config.js file in the project root and gitignore it.  It must contain clientId, clientSecret, and redirectUris[].
+
+If this file is missing, readline is used for credentials.  You will be given a URL to copy/paste into your browser, then must copy/paste back into node the code query parameter after authenticating.
 
 
+## TODO
+* Wrap objects in models for initial validation 
+* Streaming EventEmitter for subscriptions
 
 ## License
 
 MIT License
 
-Copyright (c) 2013 Alex Ehrnschwender (http://alexehrnschwender.com/)
+Copyright (c) 2014 Alex Ehrnschwender (http://alexehrnschwender.com/)
  
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
