@@ -16,19 +16,23 @@ Or clone the repo and link:
 
 ## Usage
     
+    // Client credentials from the Google API Projects site
+    // https://code.google.com/apis/console/?pli=1
     var mirrorClient = require('mirror-client')({ 
-        clientId: config.googleApis.clientId,
-        clientSecret: config.googleApis.clientSecret,
-        redirectUri: config.googleApis.redirectUris[0],
-        scope: config.googleApis.scope
+        clientId: '',
+        clientSecret: '',
+        redirectUri: '',
+        scope: ''
     });
 
-    mirrorClient.authorize(function(err){
-        if(err) { console.error(err); return; }
+    // Auth code stored in back-end or retrieved from auth redirect
+    var code = '';      
 
-        mirrorClient.getTimeline(  function(err, timeline){
-            for(var i = 0; i < timeline.items.length; i++) { 
-                console.log(timeline.items[i].text);
+    // Authorize the client and list timeline items to console
+    mirrorClient.authorize(code, function(err){
+        mirrorClient.listTimelineItems(50, function(err, list){
+            for(var i = 0; i < list.items.length; i++) { 
+                console.log("Timeline item: ", list.items[i].text);
             }
         });
     });
