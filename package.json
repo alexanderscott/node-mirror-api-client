@@ -5,10 +5,10 @@
   "description": "Google Mirror API client for managing Glass timeline items, contacts, and subscriptions.",
   "private": false,
   "repository": {
-    "url": "https://github.com/alexanderscott/mirror-api-client",
+    "url": "https://github.com/alexanderscott/node-mirror-api-client",
     "type": "git"
   },
-  "author": "Alex Ehrnschwender <alex@crunchdevelopment.com> (http://alexehrnschwender.com)",
+  "author": "Alex Ehrnschwender <alexanderscott46@gmail.com> (http://alexehrnschwender.com)",
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -16,7 +16,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/alexanderscott/mirror-api-client/raw/master/LICENSE"
+      "url": "https://github.com/alexanderscott/node-mirror-api-client/raw/master/LICENSE"
     }
   ],
   "scripts": {

@@ -1,6 +1,7 @@
-# mirror-client
-
+# mirror-api-client
 Google Mirror API client for managing Glass timeline items, contacts, and subscriptions.
+
+[![NPM](https://nodei.co/npm/mirror-api-client.png?downloads=true)](https://nodei.co/npm/mirror-api-client/)
 
 
 ## Installation
@@ -55,36 +56,36 @@ Or clone the repo and link:
 
 ### Timeline Items
 
-#### listTimelineItems( 'maxResults', callback(error, [items]) )
-#### getTimelineItem( 'itemId', callback(error, {item}) )
-#### insertTimelineItem( {item}, callback(error, {item}) )
-#### patchTimelineItem( {item}, callback(error, {item}) )
-#### updateTimelineItem( {item}, callback(error, {item}) )
-#### deleteTimelineItem( 'id' or {}, callback(error) )
+##### listTimelineItems( 'maxResults', callback(error, [items]) )
+##### getTimelineItem( 'itemId', callback(error, {item}) )
+##### insertTimelineItem( {item}, callback(error, {item}) )
+##### patchTimelineItem( {item}, callback(error, {item}) )
+##### updateTimelineItem( {item}, callback(error, {item}) )
+##### deleteTimelineItem( 'id' or {}, callback(error) )
 
 
 ### Contacts
 
-#### listContacts( callback(error, [contacts]) ) 
-#### getContact( 'contactId', callback(error, {contact}) )
-#### insertContact( {contact}, callback(error, {contact}) )
-#### patchContact( {contact}, callback(error, {contact}) )
-#### updateContact( {contact}, callback(error, {contact}) )
-#### deleteContact( 'id' or {contact}, callback(error) )
+##### listContacts( callback(error, [contacts]) ) 
+##### getContact( 'contactId', callback(error, {contact}) )
+##### insertContact( {contact}, callback(error, {contact}) )
+##### patchContact( {contact}, callback(error, {contact}) )
+##### updateContact( {contact}, callback(error, {contact}) )
+##### deleteContact( 'id' or {contact}, callback(error) )
 
 
 ### Subscriptions
     
-#### listSubscriptions( callback(error, [subscriptions] )
-#### getSubscription( 'subscriptionId', callback(error, {subscription}) )
-#### updateSubscription( {subscription}, callback(error, {subscription}) )
-#### deleteSubscription( 'subscriptionId' or {subscription}, callback(error, {subscription}) )
+##### listSubscriptions( callback(error, [subscriptions] )
+##### getSubscription( 'subscriptionId', callback(error, {subscription}) )
+##### updateSubscription( {subscription}, callback(error, {subscription}) )
+##### deleteSubscription( 'subscriptionId' or {subscription}, callback(error, {subscription}) )
 
 
 ### Locations
 
-#### listLocations( callback(error, [locations]) )
-#### getLocation( 'locationId', callback(error, {location}) )
+##### listLocations( callback(error, [locations]) )
+##### getLocation( 'locationId', callback(error, {location}) )
 
 
 
@@ -92,7 +93,7 @@ Or clone the repo and link:
 
 To run the test suite, first invoke the following command within the repo, installing the development dependencies:
 
-    $ npm install
+    $ NODE_ENV=development npm install
 
 Then run the tests with:
 
