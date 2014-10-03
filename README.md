@@ -87,6 +87,10 @@ Or clone the repo and link:
 ##### listLocations( callback(error, [locations]) )
 ##### getLocation( 'locationId', callback(error, {location}) )
 
+### Settings
+
+##### getSettings( 'settingsId', callback(error, {settings} )
+
 
 
 ## Running Tests
@@ -99,7 +103,7 @@ Then run the tests with:
 
     $ npm test
 
-The easiest way to pass app credentials into the tests is to create a config.js file in the project root and gitignore it.  It must contain clientId, clientSecret, and redirectUris[].
+The easiest way to pass app credentials into the tests is to create a config.json file in the project root and gitignore it.  It must contain clientId, clientSecret, and redirectUris[].
 
 If this file is missing, readline is used for credentials.  You will be given a URL to copy/paste into your browser, then must copy/paste back into node the code query parameter after authenticating.
 

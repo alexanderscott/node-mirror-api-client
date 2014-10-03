@@ -36,10 +36,10 @@ describe('MirrorClient', function() {
                 creds.clientSecret = inClientSecret;
                 _getCred(rl, "Redirect URI: ", true, function(inRedirectUri){
                     creds.redirectUri = inRedirectUri;
-                    _getCred(rl, "Scope: ", false, function(inScope){
-                        creds.scope = inScope;
-                        cb(null, creds);
-                    });
+                    creds.scope = ['https://www.googleapis.com/auth/glass.timeline',
+                     'https://www.googleapis.com/auth/glass.location',
+                     'https://www.googleapis.com/auth/userinfo.profile' ]).join(' ');
+                    cb(null, creds);
                 });
             });
         });
@@ -57,7 +57,6 @@ describe('MirrorClient', function() {
                     assert.ifError(err);
                     return cb(err);
                 }
-                //console.log("Authorize returned creds: ", res);
                 cb();
             });
         });
@@ -69,7 +68,7 @@ describe('MirrorClient', function() {
 
         var creds;
         try {
-            var config = require('../config');
+            var config = require('../config.json');
             creds = {
                 clientId: config.googleApis.clientId,
                 clientSecret: config.googleApis.clientSecret,
@@ -102,70 +101,12 @@ describe('MirrorClient', function() {
     });
 
     after(function(cb) {
-        //tmpTimelineItems = [];
-        //tmpContacts = [];
-        //tmpLocations = [];
+        tmpTimelineItems = [];
+        tmpContacts = [];
+        tmpLocations = [];
+        tmpSubscriptions = [];
         cb();
     });
-
-    //describe('#getAuthUrl()', function(){
-        //it('can get the google auth url for redirect', function(cb){
-            //this.timeout(timeout);
-            //var authUrl = mirrorClient.getAuthUrl();
-            //console.log("Copy and paste the following URL into your browser: \n"+ authUrl);
-            //cb();
-        //});
-    //});
-
-    //describe('#authorize()', function(){
-        //it('can get user auth tokens', function(cb){
-            //this.timeout(timeout);
-            //if(!rl) rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-            //rl.question("Paste the returned code query string: ", function(inCode){
-                //console.log("Attempting to authorize with code: " + inCode.trim());
-                //mirrorClient.authorize(inCode.trim(), function(err, res){
-                    //if(err){
-                        //console.log("Error authorizing:", err);
-                        //assert.ifError(err);
-                        //return cb(err);
-                    //}
-                    //console.log("Authorize returned creds: ", res);
-                    //cb();
-                //});
-            //});
-        //});
-    //});
-    
-    //describe('#getTokens()', function(){
-        //it('can get user auth tokens', function(cb){
-            //this.timeout(timeout);
-            //mirrorClient.getTokens(function(err, res){
-                //assert.ifError(err);
-                //cb();
-            //});
-        //});
-    //});
-    
-    //describe('#createClient()', function(){
-        //it('can create a mirror client', function(cb){
-            //this.timeout(timeout);
-            //mirrorClient.createClient(function(err, client){
-                //assert.ifError(err);
-                //cb();
-            //});
-        //});
-    //});
-
-
-    //describe('#download()', function(){
-        //it('can download an attachment from a url', function(cb){
-            //this.timeout(timeout);
-            //mirrorClient.download(function(err, res){
-                //assert.ifError(err);
-                //cb();
-            //});
-        //});
-    //});
 
 
     describe('#insertTimelineItem()', function(){
@@ -257,7 +198,6 @@ describe('MirrorClient', function() {
                 assert.ifError(err);
                 mirrorClient.getTimelineItem( tmpTimelineItems[0].id, function(err, deletedItem){
                     assert.ifError(err);
-                    //console.log("returned timeline item after deleting:", deletedItem);
                     assert.ok( deletedItem.isDeleted , 'item has been deleted');
 
                     mirrorClient.deleteTimelineItem( tmpTimelineItems[1], function(err, res){
@@ -293,7 +233,6 @@ describe('MirrorClient', function() {
             this.timeout(timeout);
             mirrorClient.listContacts(function(err, res){
                 assert.ifError(err);
-                //console.log("listContacts returned::", res);
                 assert.ok( _und.isObject( res ) && _und.isArray(res.items), 'returns an array of contacts');
                 cb();
             });
@@ -305,8 +244,6 @@ describe('MirrorClient', function() {
             this.timeout(timeout);
             mirrorClient.patchContact( _und.extend( tmpContacts[0], { displayName : 'patched contact' }), function(err, patchedContact){
                 assert.ifError(err);
-                //console.log("originalContact:", tmpContacts[0]);
-                //console.log("patchedContact:", patchedContact);
                 assert.ok( _und.isObject( patchedContact ), 'patched contact is an object'); 
                 assert.ok( !_und.isEmpty( patchedContact ), 'patched contact is not empty');
                 assert.ok( patchedContact.displayName === 'patched contact', "contact's name has been successfully patched");
@@ -320,7 +257,6 @@ describe('MirrorClient', function() {
             this.timeout(timeout);
             mirrorClient.updateContact( _und.extend( tmpContacts[0], { displayName : 'updated contact' }), function(err, updatedContact){
                 assert.ifError(err);
-                //console.log("contact has been updated to:", updatedContact);
                 assert.ok( _und.isObject( updatedContact ), 'updated contact is an object'); 
                 assert.ok( !_und.isEmpty( updatedContact ), 'updated contact is not empty');
                 assert.ok( updatedContact.displayName === 'updated contact', "contact's name has been successfully updateed");
@@ -347,7 +283,6 @@ describe('MirrorClient', function() {
                         return memo;
                     }, []);
 
-                    //if(resContacts) console.log("returned listContact after deleting:", resContacts);
                     assert.ok(contactIds.indexOf( tmpContacts[0].id ) === -1, 'deleted contact is no longer in list of contacts');
                     
                     //assert.ok( resContact.isDeleted , 'contact has been deleted');
@@ -359,69 +294,28 @@ describe('MirrorClient', function() {
         });
     });
 
-    //describe('#insertSubscription()', function(){
-        //it('can insert a subscription', function(cb){
-            //this.timeout(timeout);
-            //mirrorClient.insertSubscription( subscriptionFixtures[0], function(err, subscription){
-                //assert.ifError(err);
-                //assert.ok( _und.isObject( subscription ), 'inserted subscription is an object' );
-                //assert.ok( _und.has( subscription, 'id'), 'inserted subscription has an id');
-                //tmpSubscriptions.push(subscription);
-                //cb();
-            //});
-        //});
-    //});
-
-    //describe('#listSubscriptions()', function(){
-        //it('can list subscriptions', function(cb){
-            //this.timeout(timeout);
-            //mirrorClient.listSubscriptions( function(err, subscriptions){
-                //assert.ifError(err);
-                //assert.ok( _und.isObject( subscriptions ) && _und.isArray( subscriptions.items ), 'listed subscriptions is an object with an array of subscriptions');
-                //assert.ok( !_und.isEmpty( subscriptions.items ), 'listed subscriptions is not empty');
-                //cb();
-            //});
-        //});
-    //});
-
-    //describe('#updateSubscription()', function(){
-        //it('can update a subscription', function(cb){
-            //this.timeout(timeout);
-            //mirrorClient.updateSubscription( tmpSubscriptions[0], _und.extend( tmpSubscriptions[0], { name : 'updated subscription' }), function(err, updatedSubscription){
-                //assert.ifError(err);
-                //assert.ok( _und.isObject( updatedSubscription ), 'updated subscription is an object'); 
-                //assert.ok( !_und.isEmpty( updatedSubscription ), 'updated subscription is not empty');
-                //assert.ok( updatedSubscription.name === 'updated subscription', "subscription's name has been successfully updateed");
-                //cb();
-            //});
-        //});
-    //});
-
-    //describe('#deleteSubscription()', function(){
-        //it('can delete a subscription', function(cb){
-            //this.timeout(timeout);
-            //mirrorClient.deleteSubscription( tmpSubscriptions[0], function(err, deletedSubscription){
-                //assert.ifError(err);
-                //mirrorClient.listSubscriptions( function(err, subscriptionsRes){
-                    //assert.ifError(err);
-                    //assert.ok( _und.isEmpty( subscriptionRes ), 'subscription was deleted');
-                    //tmpSubscriptions = [];
-                    //cb();
-                //});
-            //});
-        //});
-    //});
-
 
     describe('#getLocation()', function(){
         it('can fetch a glass location', function(cb){
             this.timeout(timeout);
             mirrorClient.getLocation(function(err, location){
-                //console.log("getLocation returned:", location, err);
                 assert.ifError(err);
                 assert.ok( _und.isObject( location ), 'fetched location is an object'); 
                 assert.ok( !_und.isEmpty( location ), 'fetched location is not empty');
                 assert.ok( location.kind === 'mirror#locationsList' );
+                cb();
+            });
+        });
+    });
+
+    describe('#getSettings()', function(){
+        if('can get mirror API settings', function(cb){
+            this.timeout(timeout);
+            mirrorClient.getSettings('timezone', function(err, settings){
+                assert.ifError(err);
+                assert.ok( _und.isObject( settings ), 'fetched settings is an object'); 
+                assert.ok( !_und.isEmpty( settings ), 'fetched settings is not empty');
+                assert.ok( settings.kind === 'mirror#settings' );
                 cb();
             });
         });
